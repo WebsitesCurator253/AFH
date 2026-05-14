@@ -1,187 +1,1315 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Harbor Sanctuary Adult Family Home</title>
-
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Harbor Sanctuary — Adult Family Home | Gig Harbor, WA</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Jost:wght@300;400;500&display=swap" rel="stylesheet"/>
 <style>
-body {
-  margin:0;
-  font-family: 'Segoe UI', sans-serif;
-  color:#333;
-  line-height:1.6;
-}
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
-/* HERO */
-.hero {
-  height:90vh;
-  background: linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.4)),
-  url('https://images.unsplash.com/photo-1568605114967-8130f3a36994');
-  background-size:cover;
-  background-position:center;
-  display:flex;
-  justify-content:center;
-  align-items:center;
-  text-align:center;
-  color:white;
-  padding:20px;
-}
+  :root {
+    --forest:   #1C3528;
+    --forest2:  #274D3B;
+    --sage:     #6B8F71;
+    --sage-lt:  #A8C5A0;
+    --cream:    #F5EDD8;
+    --cream2:   #EDE1C8;
+    --gold:     #B8864E;
+    --gold-lt:  #D4A96A;
+    --bark:     #4A2F1E;
+    --white:    #FFFDF8;
+    --txt:      #1A1A1A;
+    --txt-m:    #4A4A3A;
+    --radius:   14px;
+    --transition: 0.45s cubic-bezier(0.25, 0.8, 0.25, 1);
+  }
 
-.hero h1 {
-  font-size:42px;
-}
+  html { scroll-behavior: smooth; }
 
-.hero p {
-  font-size:18px;
-  max-width:600px;
-  margin:15px auto;
-}
+  body {
+    font-family: 'Jost', sans-serif;
+    font-weight: 300;
+    background: var(--white);
+    color: var(--txt);
+    overflow-x: hidden;
+    line-height: 1.75;
+  }
 
-.btn {
-  background:#7a9c59;
-  padding:12px 25px;
-  color:white;
-  text-decoration:none;
-  border-radius:6px;
-  display:inline-block;
-  margin-top:15px;
-}
+  h1, h2, h3, h4 {
+    font-family: 'Cormorant Garamond', serif;
+    font-weight: 400;
+    line-height: 1.2;
+  }
 
-/* SECTION */
-.section {
-  padding:60px 20px;
-  max-width:1000px;
-  margin:auto;
-  text-align:center;
-}
+  /* ── NAV ── */
+  nav {
+    position: fixed;
+    top: 0; left: 0; right: 0;
+    z-index: 100;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 1.2rem 4rem;
+    background: rgba(28, 53, 40, 0.92);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border-bottom: 1px solid rgba(168, 197, 160, 0.15);
+    transition: padding var(--transition);
+  }
+  nav.scrolled { padding: 0.8rem 4rem; }
+  .nav-brand {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.5rem;
+    font-weight: 600;
+    color: var(--cream);
+    letter-spacing: 0.02em;
+    text-decoration: none;
+  }
+  .nav-brand span { color: var(--gold-lt); }
+  .nav-links { display: flex; gap: 2.5rem; list-style: none; }
+  .nav-links a {
+    color: rgba(245, 237, 216, 0.8);
+    text-decoration: none;
+    font-size: 0.85rem;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    font-weight: 400;
+    transition: color 0.2s;
+  }
+  .nav-links a:hover { color: var(--gold-lt); }
+  .nav-cta {
+    background: var(--gold);
+    color: var(--white) !important;
+    padding: 0.55rem 1.4rem;
+    border-radius: 50px;
+    transition: background 0.2s !important;
+  }
+  .nav-cta:hover { background: var(--gold-lt) !important; color: var(--forest) !important; }
+  .hamburger { display: none; flex-direction: column; gap: 5px; cursor: pointer; }
+  .hamburger span { display: block; width: 24px; height: 2px; background: var(--cream); border-radius: 2px; transition: var(--transition); }
 
-.split {
-  display:flex;
-  flex-wrap:wrap;
-  align-items:center;
-  gap:30px;
-  text-align:left;
-}
+  /* ── HERO ── */
+  #home {
+    min-height: 100vh;
+    background: var(--forest);
+    position: relative;
+    display: flex;
+    align-items: center;
+    overflow: hidden;
+  }
+  .hero-bg {
+    position: absolute; inset: 0;
+    background:
+      radial-gradient(ellipse at 70% 40%, rgba(107,143,113,0.18) 0%, transparent 60%),
+      radial-gradient(ellipse at 20% 80%, rgba(184,134,78,0.12) 0%, transparent 50%),
+      linear-gradient(160deg, #0E2319 0%, #1C3528 45%, #274D3B 100%);
+  }
+  /* Decorative circles */
+  .hero-circle {
+    position: absolute;
+    border-radius: 50%;
+    border: 1px solid rgba(168,197,160,0.12);
+  }
+  .hero-circle.c1 { width: 600px; height: 600px; top: -150px; right: -150px; }
+  .hero-circle.c2 { width: 380px; height: 380px; top: 20%; right: 12%; border-color: rgba(184,134,78,0.12); }
+  .hero-circle.c3 { width: 200px; height: 200px; bottom: 20%; left: 8%; }
+  /* Tree silhouette SVG overlay */
+  .hero-trees {
+    position: absolute;
+    bottom: 0; right: 0;
+    width: 55%;
+    height: 100%;
+    opacity: 0.07;
+    pointer-events: none;
+    background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 800 600'%3E%3Cpolygon points='400,50 320,250 450,230 300,450 500,420 200,600 600,600' fill='%23A8C5A0'/%3E%3Cpolygon points='600,100 530,280 640,260 510,440 680,410 450,600 800,600' fill='%23A8C5A0'/%3E%3Cpolygon points='150,150 80,320 200,300 70,480 240,450 0,600 350,600' fill='%23A8C5A0'/%3E%3C/svg%3E") center/cover no-repeat;
+  }
+  .hero-content {
+    position: relative;
+    z-index: 2;
+    max-width: 700px;
+    padding: 8rem 4rem 4rem;
+  }
+  .hero-eyebrow {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.6rem;
+    font-size: 0.78rem;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--gold-lt);
+    margin-bottom: 1.5rem;
+    font-weight: 400;
+  }
+  .hero-eyebrow::before {
+    content: '';
+    display: block;
+    width: 32px;
+    height: 1px;
+    background: var(--gold-lt);
+  }
+  .hero-title {
+    font-size: clamp(3rem, 6vw, 5.5rem);
+    color: var(--cream);
+    line-height: 1.05;
+    margin-bottom: 1.5rem;
+    font-weight: 300;
+  }
+  .hero-title em {
+    font-style: italic;
+    color: var(--sage-lt);
+  }
+  .hero-desc {
+    font-size: 1.05rem;
+    color: rgba(245,237,216,0.75);
+    max-width: 520px;
+    line-height: 1.8;
+    margin-bottom: 2.5rem;
+    font-weight: 300;
+  }
+  .hero-actions { display: flex; gap: 1rem; flex-wrap: wrap; }
+  .btn-primary {
+    display: inline-block;
+    background: var(--gold);
+    color: var(--white);
+    padding: 0.9rem 2.2rem;
+    border-radius: 50px;
+    text-decoration: none;
+    font-size: 0.9rem;
+    letter-spacing: 0.08em;
+    font-weight: 400;
+    transition: all 0.25s;
+  }
+  .btn-primary:hover { background: var(--gold-lt); transform: translateY(-2px); }
+  .btn-outline {
+    display: inline-block;
+    border: 1px solid rgba(245,237,216,0.4);
+    color: var(--cream);
+    padding: 0.9rem 2.2rem;
+    border-radius: 50px;
+    text-decoration: none;
+    font-size: 0.9rem;
+    letter-spacing: 0.08em;
+    font-weight: 300;
+    transition: all 0.25s;
+  }
+  .btn-outline:hover { border-color: var(--sage-lt); color: var(--sage-lt); transform: translateY(-2px); }
+  /* Scroll indicator */
+  .scroll-hint {
+    position: absolute;
+    bottom: 2.5rem;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.5rem;
+    color: rgba(245,237,216,0.4);
+    font-size: 0.7rem;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    z-index: 2;
+    animation: bob 2.5s ease-in-out infinite;
+  }
+  .scroll-hint::after {
+    content: '';
+    display: block;
+    width: 1px;
+    height: 40px;
+    background: linear-gradient(to bottom, rgba(245,237,216,0.4), transparent);
+  }
+  @keyframes bob { 0%,100%{transform:translateX(-50%) translateY(0)} 50%{transform:translateX(-50%) translateY(6px)} }
 
-.split img {
-  width:100%;
-  max-width:450px;
-  border-radius:10px;
-}
+  /* ── RIBBON STATS ── */
+  .ribbon {
+    background: var(--gold);
+    padding: 1.4rem 4rem;
+    display: flex;
+    justify-content: center;
+    gap: 4rem;
+    flex-wrap: wrap;
+  }
+  .ribbon-stat {
+    text-align: center;
+    color: var(--white);
+  }
+  .ribbon-stat strong {
+    display: block;
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 2rem;
+    font-weight: 600;
+    line-height: 1;
+  }
+  .ribbon-stat span {
+    font-size: 0.78rem;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    opacity: 0.88;
+  }
 
-.split div {
-  flex:1;
-}
+  /* ── SECTIONS ── */
+  section { padding: 7rem 4rem; }
+  .section-tag {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.6rem;
+    font-size: 0.75rem;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 1rem;
+    font-weight: 400;
+  }
+  .section-tag::before {
+    content: '';
+    display: block;
+    width: 28px;
+    height: 1px;
+    background: var(--gold);
+  }
+  .section-title {
+    font-size: clamp(2rem, 4vw, 3.2rem);
+    color: var(--forest);
+    margin-bottom: 1.2rem;
+    line-height: 1.15;
+  }
+  .section-lead {
+    font-size: 1.05rem;
+    color: var(--txt-m);
+    max-width: 560px;
+    line-height: 1.85;
+    font-weight: 300;
+  }
+  .max-w { max-width: 1200px; margin: 0 auto; }
 
-/* CARDS */
-.cards {
-  display:flex;
-  flex-wrap:wrap;
-  justify-content:center;
-}
+  /* ── ABOUT ── */
+  #about { background: var(--cream); }
+  .about-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 5rem;
+    align-items: center;
+    margin-top: 4rem;
+  }
+  .about-image-stack {
+    position: relative;
+    height: 520px;
+  }
+  .about-img-card {
+    position: absolute;
+    border-radius: var(--radius);
+    overflow: hidden;
+    box-shadow: 0 20px 60px rgba(28,53,40,0.15);
+  }
+  .about-img-card.main {
+    width: 78%;
+    height: 400px;
+    top: 0; left: 0;
+    background: linear-gradient(135deg, var(--forest) 0%, var(--sage) 100%);
+    display: flex;
+    align-items: flex-end;
+    padding: 2rem;
+  }
+  .about-img-card.accent {
+    width: 52%;
+    height: 220px;
+    bottom: 0; right: 0;
+    background: linear-gradient(135deg, var(--gold) 0%, var(--bark) 100%);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .img-card-inner {
+    color: var(--cream);
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.1rem;
+    font-style: italic;
+    line-height: 1.5;
+  }
+  .img-icon {
+    width: 60px; height: 60px;
+    background: rgba(245,237,216,0.2);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 0.8rem;
+  }
+  .img-icon svg { width: 28px; height: 28px; stroke: var(--cream); fill: none; stroke-width: 1.5; }
+  .about-accent-label {
+    text-align: center;
+    color: var(--white);
+    font-family: 'Cormorant Garamond', serif;
+  }
+  .about-accent-label strong {
+    display: block;
+    font-size: 2.8rem;
+    line-height: 1;
+    font-weight: 300;
+  }
+  .about-accent-label span { font-size: 0.9rem; font-style: italic; opacity: 0.9; }
 
-.card {
-  background:#f5f5f5;
-  margin:10px;
-  padding:20px;
-  border-radius:10px;
-  width:220px;
-}
+  .about-points { margin-top: 2.5rem; display: flex; flex-direction: column; gap: 1.2rem; }
+  .about-point {
+    display: flex;
+    gap: 1rem;
+    align-items: flex-start;
+    padding: 1.2rem 1.5rem;
+    background: var(--white);
+    border-radius: var(--radius);
+    border-left: 3px solid var(--gold);
+    box-shadow: 0 4px 20px rgba(28,53,40,0.06);
+    transition: transform 0.25s, box-shadow 0.25s;
+  }
+  .about-point:hover { transform: translateX(6px); box-shadow: 0 6px 24px rgba(28,53,40,0.1); }
+  .point-icon {
+    width: 40px; height: 40px; flex-shrink: 0;
+    background: linear-gradient(135deg, var(--forest), var(--sage));
+    border-radius: 10px;
+    display: flex; align-items: center; justify-content: center;
+  }
+  .point-icon svg { width: 20px; height: 20px; stroke: var(--cream); fill: none; stroke-width: 1.5; }
+  .point-text h4 { font-size: 1rem; font-family: 'Jost', sans-serif; font-weight: 500; color: var(--forest); margin-bottom: 0.2rem; }
+  .point-text p { font-size: 0.88rem; color: var(--txt-m); line-height: 1.6; }
 
-/* REVIEWS */
-.reviews {
-  background:#fafafa;
-}
+  /* ── AMENITIES ── */
+  #amenities { background: var(--white); }
+  .amenities-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1.5rem;
+    margin-top: 4rem;
+  }
+  .amenity-card {
+    background: var(--cream);
+    border-radius: var(--radius);
+    padding: 2.2rem;
+    position: relative;
+    overflow: hidden;
+    transition: transform 0.3s, box-shadow 0.3s;
+    border: 1px solid rgba(107,143,113,0.1);
+  }
+  .amenity-card::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 3px;
+    background: linear-gradient(90deg, var(--gold), var(--sage));
+    transform: scaleX(0);
+    transform-origin: left;
+    transition: transform 0.35s;
+  }
+  .amenity-card:hover { transform: translateY(-6px); box-shadow: 0 16px 48px rgba(28,53,40,0.12); }
+  .amenity-card:hover::before { transform: scaleX(1); }
+  .amenity-icon {
+    width: 52px; height: 52px;
+    background: var(--forest);
+    border-radius: 14px;
+    display: flex; align-items: center; justify-content: center;
+    margin-bottom: 1.2rem;
+  }
+  .amenity-icon svg { width: 24px; height: 24px; stroke: var(--sage-lt); fill: none; stroke-width: 1.5; }
+  .amenity-card h3 { font-size: 1.25rem; color: var(--forest); margin-bottom: 0.5rem; }
+  .amenity-card p { font-size: 0.9rem; color: var(--txt-m); line-height: 1.7; font-weight: 300; }
 
-.review {
-  max-width:500px;
-  margin:10px auto;
-  font-style:italic;
-}
+  /* ── OUTDOOR SECTION ── */
+  #outdoor {
+    background: linear-gradient(160deg, var(--forest2) 0%, var(--forest) 100%);
+    position: relative;
+    overflow: hidden;
+  }
+  #outdoor .section-title { color: var(--cream); }
+  #outdoor .section-lead { color: rgba(245,237,216,0.75); }
+  #outdoor .section-tag { color: var(--gold-lt); }
+  #outdoor .section-tag::before { background: var(--gold-lt); }
+  .outdoor-features {
+    margin-top: 3.5rem;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1.2rem;
+  }
+  .outdoor-feat {
+    display: flex;
+    gap: 1rem;
+    align-items: flex-start;
+    background: rgba(245,237,216,0.06);
+    padding: 1.4rem 1.6rem;
+    border-radius: var(--radius);
+    border: 1px solid rgba(168,197,160,0.12);
+    transition: background 0.25s;
+  }
+  .outdoor-feat:hover { background: rgba(245,237,216,0.1); }
+  .outdoor-feat svg { width: 22px; height: 22px; stroke: var(--gold-lt); fill: none; stroke-width: 1.5; flex-shrink: 0; margin-top: 2px; }
+  .outdoor-feat div h4 { color: var(--cream); font-size: 0.95rem; font-family: 'Jost', sans-serif; font-weight: 400; margin-bottom: 0.2rem; }
+  .outdoor-feat div p { color: rgba(245,237,216,0.6); font-size: 0.85rem; line-height: 1.6; }
+  .outdoor-visual {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .gazebo-illustration {
+    width: 100%;
+    max-width: 420px;
+  }
+  .outdoor-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 5rem;
+    align-items: center;
+    margin-top: 2rem;
+  }
+  .nature-badge {
+    display: inline-block;
+    background: rgba(168,197,160,0.15);
+    color: var(--sage-lt);
+    padding: 0.4rem 1rem;
+    border-radius: 50px;
+    font-size: 0.78rem;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    border: 1px solid rgba(168,197,160,0.25);
+    margin-bottom: 1.2rem;
+  }
 
-/* FAQ */
-.faq {
-  text-align:left;
-  max-width:700px;
-  margin:auto;
-}
+  /* ── TESTIMONIAL ── */
+  #testimonial { background: var(--cream2); text-align: center; padding: 6rem 4rem; }
+  .testimonial-quote {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(1.5rem, 3vw, 2.2rem);
+    font-style: italic;
+    color: var(--forest);
+    max-width: 780px;
+    margin: 0 auto 2rem;
+    line-height: 1.5;
+  }
+  .testimonial-attr { color: var(--txt-m); font-size: 0.88rem; letter-spacing: 0.08em; }
+  .testimonial-attr strong { color: var(--forest); font-weight: 500; }
+  .quote-mark {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 5rem;
+    color: var(--gold);
+    line-height: 0.5;
+    display: block;
+    margin-bottom: 1.5rem;
+  }
 
-/* FOOTER */
-footer {
-  background:#4a5d4a;
-  color:white;
-  text-align:center;
-  padding:20px;
-}
+  /* ── TOUR SECTION ── */
+  #tour { background: var(--white); }
+  .tour-grid {
+    display: grid;
+    grid-template-columns: 1fr 1.2fr;
+    gap: 5rem;
+    align-items: start;
+    margin-top: 4rem;
+  }
+  .tour-info-box {
+    background: var(--forest);
+    border-radius: var(--radius);
+    padding: 2.8rem;
+    color: var(--cream);
+  }
+  .tour-info-box h3 {
+    font-size: 1.6rem;
+    color: var(--cream);
+    margin-bottom: 1rem;
+  }
+  .tour-info-box p { color: rgba(245,237,216,0.75); font-size: 0.95rem; line-height: 1.8; margin-bottom: 1.5rem; }
+  .tour-detail {
+    display: flex;
+    gap: 0.8rem;
+    align-items: center;
+    padding: 0.9rem 0;
+    border-bottom: 1px solid rgba(168,197,160,0.12);
+    font-size: 0.9rem;
+    color: rgba(245,237,216,0.8);
+  }
+  .tour-detail:last-child { border-bottom: none; }
+  .tour-detail svg { width: 18px; height: 18px; stroke: var(--gold-lt); fill: none; stroke-width: 1.5; flex-shrink: 0; }
+
+  /* Tour Form */
+  .tour-form {
+    background: var(--cream);
+    border-radius: var(--radius);
+    padding: 3rem;
+    box-shadow: 0 12px 48px rgba(28,53,40,0.08);
+    border: 1px solid rgba(107,143,113,0.1);
+  }
+  .tour-form h3 {
+    font-size: 1.8rem;
+    color: var(--forest);
+    margin-bottom: 0.5rem;
+  }
+  .tour-form > p { color: var(--txt-m); font-size: 0.9rem; margin-bottom: 2rem; }
+  .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
+  .form-group { margin-bottom: 1.2rem; }
+  .form-group label {
+    display: block;
+    font-size: 0.8rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--forest);
+    font-weight: 500;
+    margin-bottom: 0.4rem;
+  }
+  .form-group input,
+  .form-group select,
+  .form-group textarea {
+    width: 100%;
+    padding: 0.85rem 1rem;
+    border: 1.5px solid rgba(107,143,113,0.25);
+    border-radius: 10px;
+    background: var(--white);
+    font-family: 'Jost', sans-serif;
+    font-size: 0.95rem;
+    color: var(--txt);
+    font-weight: 300;
+    transition: border-color 0.2s, box-shadow 0.2s;
+    outline: none;
+    -webkit-appearance: none;
+  }
+  .form-group input:focus,
+  .form-group select:focus,
+  .form-group textarea:focus {
+    border-color: var(--sage);
+    box-shadow: 0 0 0 3px rgba(107,143,113,0.12);
+  }
+  .form-group textarea { resize: vertical; min-height: 100px; }
+  .form-group select { cursor: pointer; }
+  .form-submit {
+    width: 100%;
+    padding: 1rem;
+    background: var(--forest);
+    color: var(--cream);
+    border: none;
+    border-radius: 50px;
+    font-family: 'Jost', sans-serif;
+    font-size: 0.95rem;
+    letter-spacing: 0.08em;
+    font-weight: 400;
+    cursor: pointer;
+    transition: background 0.25s, transform 0.2s;
+    margin-top: 0.5rem;
+  }
+  .form-submit:hover { background: var(--forest2); transform: translateY(-2px); }
+
+  /* Success message */
+  .form-success {
+    display: none;
+    text-align: center;
+    padding: 2rem;
+  }
+  .form-success .check-circle {
+    width: 70px; height: 70px;
+    background: linear-gradient(135deg, var(--sage), var(--forest));
+    border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    margin: 0 auto 1.5rem;
+  }
+  .form-success .check-circle svg { width: 32px; height: 32px; stroke: white; fill: none; stroke-width: 2; }
+  .form-success h3 { font-size: 1.8rem; color: var(--forest); margin-bottom: 0.8rem; }
+  .form-success p { color: var(--txt-m); font-size: 0.95rem; }
+
+  /* ── LOCATION ── */
+  #location { background: var(--cream); }
+  .location-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 4rem;
+    align-items: center;
+    margin-top: 4rem;
+  }
+  .location-map-placeholder {
+    width: 100%;
+    height: 380px;
+    background: linear-gradient(135deg, var(--forest2) 0%, var(--sage) 100%);
+    border-radius: var(--radius);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    overflow: hidden;
+  }
+  .map-pin-group { text-align: center; color: var(--cream); }
+  .map-pin-group svg { width: 48px; height: 48px; stroke: var(--cream); fill: none; stroke-width: 1.5; margin-bottom: 0.8rem; }
+  .map-pin-group p { font-size: 1rem; font-family: 'Cormorant Garamond', serif; font-style: italic; }
+  .location-details { display: flex; flex-direction: column; gap: 1.5rem; }
+  .location-item {
+    display: flex;
+    gap: 1.2rem;
+    align-items: flex-start;
+  }
+  .loc-icon {
+    width: 44px; height: 44px; flex-shrink: 0;
+    background: var(--forest);
+    border-radius: 12px;
+    display: flex; align-items: center; justify-content: center;
+  }
+  .loc-icon svg { width: 20px; height: 20px; stroke: var(--cream); fill: none; stroke-width: 1.5; }
+  .location-item h4 { font-size: 0.85rem; text-transform: uppercase; letter-spacing: 0.1em; color: var(--gold); font-family: 'Jost', sans-serif; font-weight: 500; margin-bottom: 0.2rem; }
+  .location-item p { font-size: 0.95rem; color: var(--txt-m); line-height: 1.6; }
+
+  /* ── FOOTER ── */
+  footer {
+    background: var(--forest);
+    color: rgba(245,237,216,0.7);
+    padding: 4rem;
+    text-align: center;
+  }
+  .footer-logo {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 2rem;
+    color: var(--cream);
+    margin-bottom: 0.5rem;
+  }
+  .footer-logo span { color: var(--gold-lt); }
+  .footer-tagline { font-style: italic; color: rgba(245,237,216,0.5); margin-bottom: 2rem; }
+  .footer-links {
+    display: flex;
+    justify-content: center;
+    gap: 2rem;
+    list-style: none;
+    margin-bottom: 2.5rem;
+    flex-wrap: wrap;
+  }
+  .footer-links a {
+    color: rgba(245,237,216,0.6);
+    text-decoration: none;
+    font-size: 0.85rem;
+    letter-spacing: 0.08em;
+    transition: color 0.2s;
+  }
+  .footer-links a:hover { color: var(--gold-lt); }
+  .footer-divider {
+    width: 60px; height: 1px;
+    background: rgba(168,197,160,0.2);
+    margin: 0 auto 2rem;
+  }
+  .footer-bottom { font-size: 0.82rem; color: rgba(245,237,216,0.35); }
+  .footer-address { margin-bottom: 0.4rem; font-size: 0.9rem; color: rgba(245,237,216,0.5); }
+
+  /* ── ANIMATIONS ── */
+  .fade-up {
+    opacity: 0;
+    transform: translateY(30px);
+    transition: opacity 0.7s ease, transform 0.7s ease;
+  }
+  .fade-up.visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+  .delay-1 { transition-delay: 0.1s; }
+  .delay-2 { transition-delay: 0.2s; }
+  .delay-3 { transition-delay: 0.3s; }
+  .delay-4 { transition-delay: 0.4s; }
+
+  /* ── RESPONSIVE ── */
+  @media (max-width: 900px) {
+    nav { padding: 1.2rem 2rem; }
+    nav.scrolled { padding: 0.9rem 2rem; }
+    .nav-links { display: none; }
+    .hamburger { display: flex; }
+    .mobile-menu {
+      display: none;
+      position: fixed;
+      inset: 0;
+      background: rgba(28,53,40,0.97);
+      z-index: 200;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 2rem;
+    }
+    .mobile-menu.open { display: flex; }
+    .mobile-menu a {
+      color: var(--cream);
+      text-decoration: none;
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 2rem;
+    }
+    .mobile-close {
+      position: absolute;
+      top: 2rem; right: 2rem;
+      background: none;
+      border: none;
+      color: var(--cream);
+      font-size: 2rem;
+      cursor: pointer;
+    }
+    section { padding: 5rem 2rem; }
+    .hero-content { padding: 7rem 2rem 3rem; }
+    .about-grid, .tour-grid, .location-grid, .outdoor-grid { grid-template-columns: 1fr; gap: 3rem; }
+    .amenities-grid { grid-template-columns: 1fr; }
+    .form-row { grid-template-columns: 1fr; }
+    .about-image-stack { height: 360px; }
+    .outdoor-features { grid-template-columns: 1fr; }
+    .ribbon { gap: 2rem; padding: 1.4rem 2rem; }
+    footer { padding: 3rem 2rem; }
+  }
 </style>
 </head>
-
 <body>
 
+<!-- MOBILE MENU -->
+<div class="mobile-menu" id="mobileMenu">
+  <button class="mobile-close" onclick="closeMobile()">✕</button>
+  <a href="#home" onclick="closeMobile()">Home</a>
+  <a href="#about" onclick="closeMobile()">About</a>
+  <a href="#amenities" onclick="closeMobile()">Amenities</a>
+  <a href="#outdoor" onclick="closeMobile()">Outdoors</a>
+  <a href="#tour" onclick="closeMobile()">Schedule a Tour</a>
+  <a href="#location" onclick="closeMobile()">Location</a>
+</div>
+
+<!-- NAV -->
+<nav id="mainNav">
+  <a href="#home" class="nav-brand">Harbor <span>Sanctuary</span></a>
+  <ul class="nav-links">
+    <li><a href="#home">Home</a></li>
+    <li><a href="#about">About</a></li>
+    <li><a href="#amenities">Amenities</a></li>
+    <li><a href="#outdoor">Outdoors</a></li>
+    <li><a href="#location">Location</a></li>
+    <li><a href="#tour" class="nav-cta">Schedule a Tour</a></li>
+  </ul>
+  <div class="hamburger" onclick="document.getElementById('mobileMenu').classList.add('open')">
+    <span></span><span></span><span></span>
+  </div>
+</nav>
+
 <!-- HERO -->
-<div class="hero">
-  <div>
-    <h1>Harbor Sanctuary Adult Family Home</h1>
-    <p>Proudly family owned in Gig Harbor, offering a warm and heart-centered home in a quiet, safe, and nature-filled neighborhood.</p>
-    <a class="btn" href="mailto:your@email.com">Schedule a Tour</a>
+<section id="home">
+  <div class="hero-bg"></div>
+  <div class="hero-circle c1"></div>
+  <div class="hero-circle c2"></div>
+  <div class="hero-circle c3"></div>
+  <div class="hero-trees"></div>
+  <div class="hero-content">
+    <div class="hero-eyebrow">Adult Family Home &mdash; Gig Harbor, WA</div>
+    <h1 class="hero-title">
+      Where Every Day<br>Feels Like <em>Home</em>
+    </h1>
+    <p class="hero-desc">
+      Harbor Sanctuary is a warm, intimate care home nestled in the quiet, nature-rich neighborhoods of Gig Harbor. We offer personalized, compassionate care in an environment that truly feels like family.
+    </p>
+    <div class="hero-actions">
+      <a href="#tour" class="btn-primary">Schedule a Tour</a>
+      <a href="#about" class="btn-outline">Learn More</a>
+    </div>
+  </div>
+  <div class="scroll-hint">Scroll</div>
+</section>
+
+<!-- RIBBON -->
+<div class="ribbon">
+  <div class="ribbon-stat">
+    <strong>24/7</strong>
+    <span>On-Site Caretaker</span>
+  </div>
+  <div class="ribbon-stat">
+    <strong>Private</strong>
+    <span>Rooms Available</span>
+  </div>
+  <div class="ribbon-stat">
+    <strong>Home</strong>
+    <span>Cooked Meals Daily</span>
+  </div>
+  <div class="ribbon-stat">
+    <strong>Luxury</strong>
+    <span>Furnishings Throughout</span>
   </div>
 </div>
 
 <!-- ABOUT -->
-<div class="section">
-  <h2>Welcome to Our Home</h2>
-  <p>At Harbor Sanctuary, we believe care should feel like family. Established in Gig Harbor, our adult family home provides a peaceful and nurturing environment where every resident is treated with dignity, compassion, and respect.</p>
-</div>
-
-<!-- IMAGE + TEXT -->
-<div class="section split">
-  <img src="https://images.unsplash.com/photo-1505691938895-1758d7feb511">
-  <div>
-    <h2>A Peaceful Setting</h2>
-    <p>Located in a quiet and safe neighborhood, our home is surrounded by natural beauty. Residents enjoy a calm atmosphere, fresh air, and a truly relaxing environment.</p>
+<section id="about">
+  <div class="max-w">
+    <div class="section-tag">Our Home</div>
+    <h2 class="section-title">A Heartwarming Place<br>to Call Home</h2>
+    <p class="section-lead">At Harbor Sanctuary, we believe that exceptional care begins with an exceptional environment. Our residence is designed to provide comfort, dignity, and joy for every resident.</p>
+    <div class="about-grid">
+      <div class="about-image-stack fade-up">
+        <div class="about-img-card main">
+          <div class="img-card-inner">
+            <div class="img-icon">
+              <svg viewBox="0 0 24 24"><path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+            </div>
+            <em>"A sanctuary in every sense of the word — warm, peaceful, and beautifully appointed."</em>
+          </div>
+        </div>
+        <div class="about-img-card accent">
+          <div class="about-accent-label">
+            <strong>Gig Harbor</strong>
+            <span>Quiet neighborhood, nature all around</span>
+          </div>
+        </div>
+      </div>
+      <div class="fade-up delay-2">
+        <div class="section-tag">Why Choose Us</div>
+        <h3 class="section-title" style="font-size:2rem;">Care That Goes<br><em>Beyond the Expected</em></h3>
+        <p class="section-lead" style="margin-bottom:0;">Our dedicated team lives and breathes compassionate care. Every meal, every moment, and every interaction is crafted with warmth and intention.</p>
+        <div class="about-points">
+          <div class="about-point">
+            <div class="point-icon">
+              <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="3"/><path d="M12 1v4M12 19v4M4.22 4.22l2.83 2.83M16.95 16.95l2.83 2.83M1 12h4M19 12h4M4.22 19.78l2.83-2.83M16.95 7.05l2.83-2.83"/></svg>
+            </div>
+            <div class="point-text">
+              <h4>24/7 Caretaker On-Site</h4>
+              <p>Peace of mind around the clock — a dedicated caretaker is always present, ensuring safety and attentive support whenever needed.</p>
+            </div>
+          </div>
+          <div class="about-point">
+            <div class="point-icon">
+              <svg viewBox="0 0 24 24"><path d="M18 8h1a4 4 0 010 8h-1"/><path d="M2 8h16v9a4 4 0 01-4 4H6a4 4 0 01-4-4V8z"/><line x1="6" y1="1" x2="6" y2="4"/><line x1="10" y1="1" x2="10" y2="4"/><line x1="14" y1="1" x2="14" y2="4"/></svg>
+            </div>
+            <div class="point-text">
+              <h4>Home-Cooked Meals</h4>
+              <p>Nourishing, delicious meals prepared fresh daily — tailored to dietary needs and made with the same love as cooking for family.</p>
+            </div>
+          </div>
+          <div class="about-point">
+            <div class="point-icon">
+              <svg viewBox="0 0 24 24"><rect x="2" y="3" width="20" height="14" rx="2"/><path d="M8 21h8M12 17v4"/></svg>
+            </div>
+            <div class="point-text">
+              <h4>Private Rooms</h4>
+              <p>Each resident enjoys their own private, beautifully furnished room — a personal retreat to call their own within our loving home.</p>
+            </div>
+          </div>
+          <div class="about-point">
+            <div class="point-icon">
+              <svg viewBox="0 0 24 24"><path d="M20.84 4.61a5.5 5.5 0 00-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 00-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 000-7.78z"/></svg>
+            </div>
+            <div class="point-text">
+              <h4>Heartwarming Environment</h4>
+              <p>From luxurious furnishings to warm décor and natural light — every detail is thoughtfully chosen to create a genuine home atmosphere.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
   </div>
-</div>
+</section>
 
-<!-- SERVICES -->
-<div class="section">
-  <h2>Our Care Services</h2>
-  <div class="cards">
-    <div class="card">24/7 Personalized Care</div>
-    <div class="card">Medication Management</div>
-    <div class="card">Nutritious Home-Cooked Meals</div>
-    <div class="card">Daily Engagement Activities</div>
+<!-- AMENITIES -->
+<section id="amenities">
+  <div class="max-w">
+    <div class="section-tag">Amenities</div>
+    <h2 class="section-title">Thoughtfully Designed<br>for Comfortable Living</h2>
+    <p class="section-lead">We've curated every detail of Harbor Sanctuary to offer the finest experience in residential care.</p>
+    <div class="amenities-grid">
+      <div class="amenity-card fade-up">
+        <div class="amenity-icon">
+          <svg viewBox="0 0 24 24"><path d="M20 9v11a2 2 0 01-2 2H6a2 2 0 01-2-2V9"/><path d="M9 22V12h6v10"/><path d="M2 10.6L12 2l10 8.6"/></svg>
+        </div>
+        <h3>Private Bedrooms</h3>
+        <p>Generously sized private rooms furnished with luxurious bedding, ample storage, and personalized décor to make each space truly feel like your own.</p>
+      </div>
+      <div class="amenity-card fade-up delay-1">
+        <div class="amenity-icon">
+          <svg viewBox="0 0 24 24"><path d="M18 8h1a4 4 0 010 8h-1"/><path d="M2 8h16v9a4 4 0 01-4 4H6a4 4 0 01-4-4V8z"/><line x1="6" y1="1" x2="6" y2="4"/><line x1="10" y1="1" x2="10" y2="4"/><line x1="14" y1="1" x2="14" y2="4"/></svg>
+        </div>
+        <h3>Chef-Quality Meals</h3>
+        <p>Three home-cooked meals daily plus snacks, prepared fresh with quality ingredients. Dietary preferences and medical requirements are always honored.</p>
+      </div>
+      <div class="amenity-card fade-up delay-2">
+        <div class="amenity-icon">
+          <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+        </div>
+        <h3>24/7 Professional Care</h3>
+        <p>A trained caretaker is on-site every hour of every day. Assistance with daily activities, medications, and personal care is always just moments away.</p>
+      </div>
+      <div class="amenity-card fade-up delay-3">
+        <div class="amenity-icon">
+          <svg viewBox="0 0 24 24"><path d="M21 16V8a2 2 0 00-1-1.73l-7-4a2 2 0 00-2 0l-7 4A2 2 0 003 8v8a2 2 0 001 1.73l7 4a2 2 0 002 0l7-4A2 2 0 0021 16z"/></svg>
+        </div>
+        <h3>Luxurious Furnishings</h3>
+        <p>Premium furniture, soft textiles, and warm, elegant interiors create an atmosphere of refined comfort throughout every shared and private space.</p>
+      </div>
+      <div class="amenity-card fade-up">
+        <div class="amenity-icon">
+          <svg viewBox="0 0 24 24"><path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 00-3-3.87"/><path d="M16 3.13a4 4 0 010 7.75"/></svg>
+        </div>
+        <h3>Warm Community</h3>
+        <p>Small, intimate household size means residents receive personalized attention and build genuine relationships with caregivers and fellow residents.</p>
+      </div>
+      <div class="amenity-card fade-up delay-1">
+        <div class="amenity-icon">
+          <svg viewBox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+        </div>
+        <h3>Safety &amp; Security</h3>
+        <p>A secure, monitored home environment in a peaceful residential neighborhood, giving residents and families complete peace of mind.</p>
+      </div>
+    </div>
   </div>
-</div>
+</section>
 
-<!-- REVIEWS -->
-<div class="section reviews">
-  <h2>What Families Are Saying</h2>
-  <div class="review">⭐️⭐️⭐️⭐️⭐️ “A truly loving and peaceful home.”</div>
-  <div class="review">⭐️⭐️⭐️⭐️⭐️ “You can feel the care the moment you walk in.”</div>
-</div>
-
-<!-- FAQ -->
-<div class="section">
-  <h2>Frequently Asked Questions</h2>
-  <div class="faq">
-    <p><strong>What makes your home different?</strong><br>We are family-owned and focus on creating a warm, personal environment.</p>
-    <p><strong>Can we visit?</strong><br>Yes, we encourage tours for families to experience our home.</p>
-    <p><strong>What level of care do you provide?</strong><br>We offer personalized care tailored to each resident’s needs.</p>
+<!-- OUTDOOR -->
+<section id="outdoor">
+  <div class="max-w">
+    <div class="outdoor-grid">
+      <div class="fade-up">
+        <div class="nature-badge">Pacific Northwest Living</div>
+        <div class="section-tag">Outdoor Spaces</div>
+        <h2 class="section-title">Nature, Tranquility<br>& Open Air</h2>
+        <p class="section-lead">Our property backs up to lush Pacific Northwest scenery, offering a serene natural backdrop that soothes the soul and lifts the spirit every single day.</p>
+        <div class="outdoor-features">
+          <div class="outdoor-feat">
+            <svg viewBox="0 0 24 24"><path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+            <div>
+              <h4>Large Outdoor Deck</h4>
+              <p>Spacious deck perfect for morning coffee, socializing, or simply soaking in the fresh Gig Harbor air.</p>
+            </div>
+          </div>
+          <div class="outdoor-feat">
+            <svg viewBox="0 0 24 24"><circle cx="12" cy="10" r="3"/><path d="M12 2a8 8 0 018 8c0 6-8 14-8 14S4 16 4 10a8 8 0 018-8z"/></svg>
+            <div>
+              <h4>Private Gazebo</h4>
+              <p>A beautiful covered gazebo — ideal for relaxing outdoors in every season, sheltered from the Pacific Northwest rain.</p>
+            </div>
+          </div>
+          <div class="outdoor-feat">
+            <svg viewBox="0 0 24 24"><line x1="12" y1="2" x2="12" y2="22"/><path d="M17 5H9.5a3.5 3.5 0 000 7h5a3.5 3.5 0 010 7H6"/></svg>
+            <div>
+              <h4>Nature Scenery</h4>
+              <p>Surrounded by tall evergreens and native Pacific Northwest flora — a calming, beautiful natural setting.</p>
+            </div>
+          </div>
+          <div class="outdoor-feat">
+            <svg viewBox="0 0 24 24"><path d="M18 3a3 3 0 00-3 3v12a3 3 0 003 3 3 3 0 003-3 3 3 0 00-3-3H6a3 3 0 00-3 3 3 3 0 003 3 3 3 0 003-3V6a3 3 0 00-3-3 3 3 0 00-3 3 3 3 0 003 3h12a3 3 0 003-3 3 3 0 00-3-3z"/></svg>
+            <div>
+              <h4>Quiet Neighborhood</h4>
+              <p>A peaceful residential street — minimal traffic, friendly neighbors, and a true sense of community.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="outdoor-visual fade-up delay-2">
+        <!-- Gazebo SVG Illustration -->
+        <svg class="gazebo-illustration" viewBox="0 0 420 440" xmlns="http://www.w3.org/2000/svg">
+          <!-- Sky/Background -->
+          <defs>
+            <radialGradient id="skyGrad" cx="50%" cy="30%" r="70%">
+              <stop offset="0%" stop-color="#274D3B"/>
+              <stop offset="100%" stop-color="#1C3528"/>
+            </radialGradient>
+          </defs>
+          <rect width="420" height="440" rx="20" fill="url(#skyGrad)"/>
+          <!-- Stars -->
+          <circle cx="60" cy="50" r="1.5" fill="rgba(245,237,216,0.5)"/>
+          <circle cx="140" cy="30" r="1" fill="rgba(245,237,216,0.4)"/>
+          <circle cx="300" cy="40" r="1.5" fill="rgba(245,237,216,0.5)"/>
+          <circle cx="370" cy="60" r="1" fill="rgba(245,237,216,0.3)"/>
+          <circle cx="240" cy="20" r="1" fill="rgba(245,237,216,0.4)"/>
+          <!-- Trees background -->
+          <g opacity="0.25">
+            <polygon points="20,320 55,180 90,320" fill="#A8C5A0"/>
+            <polygon points="50,320 75,200 100,320" fill="#6B8F71"/>
+            <rect x="65" y="310" width="20" height="30" fill="#4A2F1E"/>
+            <polygon points="310,320 345,170 380,320" fill="#A8C5A0"/>
+            <polygon points="340,320 365,195 390,320" fill="#6B8F71"/>
+            <rect x="355" y="310" width="20" height="30" fill="#4A2F1E"/>
+          </g>
+          <!-- Ground -->
+          <ellipse cx="210" cy="400" rx="180" ry="20" fill="rgba(107,143,113,0.2)"/>
+          <rect x="30" y="395" width="360" height="30" rx="4" fill="rgba(107,143,113,0.15)"/>
+          <!-- Deck platform -->
+          <rect x="60" y="380" width="300" height="20" rx="4" fill="#4A2F1E" opacity="0.9"/>
+          <rect x="55" y="376" width="310" height="8" rx="4" fill="#5C3D2E"/>
+          <!-- Deck planks detail -->
+          <line x1="100" y1="376" x2="100" y2="400" stroke="#3D2418" stroke-width="1" opacity="0.5"/>
+          <line x1="155" y1="376" x2="155" y2="400" stroke="#3D2418" stroke-width="1" opacity="0.5"/>
+          <line x1="210" y1="376" x2="210" y2="400" stroke="#3D2418" stroke-width="1" opacity="0.5"/>
+          <line x1="265" y1="376" x2="265" y2="400" stroke="#3D2418" stroke-width="1" opacity="0.5"/>
+          <line x1="320" y1="376" x2="320" y2="400" stroke="#3D2418" stroke-width="1" opacity="0.5"/>
+          <!-- Columns -->
+          <rect x="100" y="240" width="12" height="140" rx="3" fill="#5C3D2E"/>
+          <rect x="200" y="240" width="12" height="140" rx="3" fill="#5C3D2E"/>
+          <rect x="308" y="240" width="12" height="140" rx="3" fill="#5C3D2E"/>
+          <!-- Roof structure -->
+          <polygon points="210,100 70,250 350,250" fill="#B8864E" opacity="0.95"/>
+          <polygon points="210,100 68,248 210,200" fill="rgba(0,0,0,0.1)"/>
+          <!-- Roof shading -->
+          <polygon points="210,108 80,248 210,202" fill="rgba(0,0,0,0.08)"/>
+          <!-- Roof trim -->
+          <line x1="70" y1="250" x2="350" y2="250" stroke="#D4A96A" stroke-width="3"/>
+          <!-- Cupola on top -->
+          <polygon points="210,65 190,108 230,108" fill="#D4A96A"/>
+          <rect x="195" y="55" width="30" height="12" rx="3" fill="#B8864E"/>
+          <line x1="210" y1="40" x2="210" y2="55" stroke="#D4A96A" stroke-width="2"/>
+          <circle cx="210" cy="38" r="5" fill="#D4A96A"/>
+          <!-- Cross beams on roof -->
+          <line x1="140" y1="200" x2="280" y2="200" stroke="rgba(245,237,216,0.15)" stroke-width="1.5"/>
+          <line x1="110" y1="225" x2="310" y2="225" stroke="rgba(245,237,216,0.1)" stroke-width="1"/>
+          <!-- Hanging lights -->
+          <line x1="140" y1="250" x2="140" y2="290" stroke="#D4A96A" stroke-width="1" stroke-dasharray="3,4"/>
+          <circle cx="140" cy="292" r="5" fill="#D4A96A" opacity="0.9"/>
+          <line x1="210" y1="250" x2="210" y2="280" stroke="#D4A96A" stroke-width="1" stroke-dasharray="3,4"/>
+          <circle cx="210" cy="282" r="5" fill="#D4A96A" opacity="0.9"/>
+          <line x1="280" y1="250" x2="280" y2="290" stroke="#D4A96A" stroke-width="1" stroke-dasharray="3,4"/>
+          <circle cx="280" cy="292" r="5" fill="#D4A96A" opacity="0.9"/>
+          <!-- Bench/Seat inside -->
+          <rect x="130" y="330" width="80" height="12" rx="3" fill="#5C3D2E" opacity="0.8"/>
+          <rect x="132" y="342" width="8" height="22" rx="2" fill="#4A2F1E" opacity="0.7"/>
+          <rect x="200" y="342" width="8" height="22" rx="2" fill="#4A2F1E" opacity="0.7"/>
+          <!-- Small flowers/plants at base -->
+          <circle cx="90" cy="378" r="8" fill="rgba(107,143,113,0.5)"/>
+          <circle cx="78" cy="372" r="6" fill="rgba(107,143,113,0.4)"/>
+          <circle cx="330" cy="378" r="8" fill="rgba(107,143,113,0.5)"/>
+          <circle cx="342" cy="372" r="6" fill="rgba(107,143,113,0.4)"/>
+          <!-- Label -->
+          <text x="210" y="430" text-anchor="middle" fill="rgba(245,237,216,0.5)" font-family="Georgia,serif" font-size="11" font-style="italic">Harbor Sanctuary Gazebo</text>
+        </svg>
+      </div>
+    </div>
   </div>
-</div>
+</section>
 
-<!-- CONTACT -->
-<div class="section">
-  <h2>Contact Us</h2>
-  <p>📍 Gig Harbor, WA</p>
-  <p>📞 (253) 555-6789</p>
-  <a class="btn" href="mailto:your@email.com">Book a Tour</a>
-</div>
+<!-- TESTIMONIAL -->
+<section id="testimonial">
+  <div class="max-w" style="max-width: 900px;">
+    <span class="quote-mark">&ldquo;</span>
+    <p class="testimonial-quote fade-up">
+      Finding Harbor Sanctuary was a gift. My mother is genuinely happy — she loves the meals, her room, and most of all the wonderful people who care for her every day. It truly feels like a family home, not a facility.
+    </p>
+    <p class="testimonial-attr fade-up delay-1"><strong>— A Grateful Family Member</strong>, Gig Harbor Resident</p>
+  </div>
+</section>
 
+<!-- TOUR -->
+<section id="tour">
+  <div class="max-w">
+    <div class="section-tag">Schedule a Visit</div>
+    <h2 class="section-title">Come See Harbor Sanctuary<br><em>For Yourself</em></h2>
+    <p class="section-lead">We'd love to welcome you. Schedule a personal tour and experience the warmth and beauty of our home firsthand.</p>
+    <div class="tour-grid">
+      <div class="fade-up">
+        <div class="tour-info-box">
+          <h3>What to Expect</h3>
+          <p>During your visit, you'll receive a full guided tour of our home, meet our caretaking team, and have all your questions answered in a relaxed, no-pressure setting.</p>
+          <div class="tour-detail">
+            <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+            Tour duration: approximately 45–60 minutes
+          </div>
+          <div class="tour-detail">
+            <svg viewBox="0 0 24 24"><path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 00-3-3.87"/><path d="M16 3.13a4 4 0 010 7.75"/></svg>
+            Meet our on-site caretaking team
+          </div>
+          <div class="tour-detail">
+            <svg viewBox="0 0 24 24"><rect x="2" y="3" width="20" height="14" rx="2"/><path d="M8 21h8M12 17v4"/></svg>
+            See private rooms &amp; all shared spaces
+          </div>
+          <div class="tour-detail">
+            <svg viewBox="0 0 24 24"><path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+            Explore the outdoor deck &amp; gazebo
+          </div>
+          <div class="tour-detail">
+            <svg viewBox="0 0 24 24"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg>
+            4328 Murphy Dr NW, Gig Harbor, WA
+          </div>
+        </div>
+      </div>
+      <div class="fade-up delay-2">
+        <div class="tour-form" id="tourFormWrapper">
+          <div id="formContent">
+            <h3>Request a Tour</h3>
+            <p>Fill out the form below and we'll reach out within one business day to confirm your visit.</p>
+            <div class="form-row">
+              <div class="form-group">
+                <label>First Name</label>
+                <input type="text" id="fname" placeholder="Jane"/>
+              </div>
+              <div class="form-group">
+                <label>Last Name</label>
+                <input type="text" id="lname" placeholder="Smith"/>
+              </div>
+            </div>
+            <div class="form-group">
+              <label>Email Address</label>
+              <input type="email" id="email" placeholder="jane@example.com"/>
+            </div>
+            <div class="form-group">
+              <label>Phone Number</label>
+              <input type="tel" id="phone" placeholder="(253) 555-0100"/>
+            </div>
+            <div class="form-row">
+              <div class="form-group">
+                <label>Preferred Date</label>
+                <input type="date" id="tourDate"/>
+              </div>
+              <div class="form-group">
+                <label>Preferred Time</label>
+                <select id="tourTime">
+                  <option value="">Select a time</option>
+                  <option>9:00 AM</option>
+                  <option>10:00 AM</option>
+                  <option>11:00 AM</option>
+                  <option>1:00 PM</option>
+                  <option>2:00 PM</option>
+                  <option>3:00 PM</option>
+                </select>
+              </div>
+            </div>
+            <div class="form-group">
+              <label>Relationship to Future Resident</label>
+              <select id="relationship">
+                <option value="">Please select</option>
+                <option>Adult Child / Family Member</option>
+                <option>Spouse / Partner</option>
+                <option>Social Worker / Case Manager</option>
+                <option>Healthcare Professional</option>
+                <option>Future Resident</option>
+                <option>Other</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <label>Questions or Comments (optional)</label>
+              <textarea id="message" placeholder="Any questions or special considerations we should know about…"></textarea>
+            </div>
+            <button class="form-submit" onclick="submitForm()">Request My Tour →</button>
+          </div>
+          <div class="form-success" id="formSuccess">
+            <div class="check-circle">
+              <svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg>
+            </div>
+            <h3>Thank You!</h3>
+            <p>Your tour request has been received. A member of our team will be in touch within one business day to confirm your visit to Harbor Sanctuary.</p>
+            <p style="margin-top:1rem; font-size:0.85rem; color:var(--sage);">We look forward to welcoming you.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- LOCATION -->
+<section id="location">
+  <div class="max-w">
+    <div class="section-tag">Find Us</div>
+    <h2 class="section-title">A Peaceful Corner<br>of Gig Harbor</h2>
+    <p class="section-lead">Situated in a quiet, tree-lined neighborhood in Gig Harbor, Washington — close to everything, yet wonderfully serene.</p>
+    <div class="location-grid">
+      <div class="location-map-placeholder fade-up">
+        <div class="map-pin-group">
+          <svg viewBox="0 0 24 24"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg>
+          <p>4328 Murphy Dr NW<br>Gig Harbor, WA</p>
+          <a href="https://maps.google.com/?q=4328+Murphy+Dr+NW+Gig+Harbor+WA" target="_blank" style="display:inline-block; margin-top:1.2rem; background:rgba(245,237,216,0.15); color:var(--cream); border:1px solid rgba(245,237,216,0.3); padding:0.5rem 1.2rem; border-radius:50px; font-size:0.82rem; text-decoration:none; letter-spacing:0.08em; transition:background 0.2s;" onmouseover="this.style.background='rgba(245,237,216,0.25)'" onmouseout="this.style.background='rgba(245,237,216,0.15)'">
+            Open in Google Maps →
+          </a>
+        </div>
+      </div>
+      <div class="location-details fade-up delay-2">
+        <div class="location-item">
+          <div class="loc-icon">
+            <svg viewBox="0 0 24 24"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg>
+          </div>
+          <div>
+            <h4>Address</h4>
+            <p>4328 Murphy Dr NW<br>Gig Harbor, Washington 98332</p>
+          </div>
+        </div>
+        <div class="location-item">
+          <div class="loc-icon">
+            <svg viewBox="0 0 24 24"><path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+          </div>
+          <div>
+            <h4>Setting</h4>
+            <p>Quiet residential neighborhood surrounded by tall evergreens and Pacific Northwest nature scenery.</p>
+          </div>
+        </div>
+        <div class="location-item">
+          <div class="loc-icon">
+            <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+          </div>
+          <div>
+            <h4>Tours Available</h4>
+            <p>Monday – Saturday, 9:00 AM – 4:00 PM<br>By appointment — flexible scheduling available.</p>
+          </div>
+        </div>
+        <div class="location-item">
+          <div class="loc-icon">
+            <svg viewBox="0 0 24 24"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.7 9.74 19.79 19.79 0 01.67 1.11 2 2 0 012.66 0h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L6.91 7.91a16 16 0 006.09 6.09l1.07-1.07a2 2 0 012.11-.45 12.84 12.84 0 002.81.7A2 2 0 0122 16.92z"/></svg>
+          </div>
+          <div>
+            <h4>Contact Us</h4>
+            <p>Reach out anytime to ask questions or schedule your tour. We're always happy to talk.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
 <footer>
-  <p>© 2026 Harbor Sanctuary Adult Family Home</p>
+  <div class="footer-logo">Harbor <span>Sanctuary</span></div>
+  <p class="footer-tagline">Adult Family Home &mdash; Gig Harbor, Washington</p>
+  <ul class="footer-links">
+    <li><a href="#home">Home</a></li>
+    <li><a href="#about">About</a></li>
+    <li><a href="#amenities">Amenities</a></li>
+    <li><a href="#outdoor">Outdoors</a></li>
+    <li><a href="#tour">Schedule a Tour</a></li>
+    <li><a href="#location">Location</a></li>
+  </ul>
+  <div class="footer-divider"></div>
+  <p class="footer-address">4328 Murphy Dr NW, Gig Harbor, WA &nbsp;·&nbsp; 24/7 Caretaker On-Site</p>
+  <p class="footer-bottom">&copy; 2025 Harbor Sanctuary. All rights reserved. &nbsp;·&nbsp; Licensed Adult Family Home</p>
 </footer>
 
+<script>
+  // Nav scroll effect
+  const nav = document.getElementById('mainNav');
+  window.addEventListener('scroll', () => {
+    nav.classList.toggle('scrolled', window.scrollY > 60);
+  });
+
+  // Mobile menu close
+  function closeMobile() {
+    document.getElementById('mobileMenu').classList.remove('open');
+  }
+
+  // Scroll animations
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(e => {
+      if (e.isIntersecting) {
+        e.target.classList.add('visible');
+      }
+    });
+  }, { threshold: 0.12 });
+  document.querySelectorAll('.fade-up').forEach(el => observer.observe(el));
+
+  // Set min date for tour form
+  const dateInput = document.getElementById('tourDate');
+  if (dateInput) {
+    const today = new Date();
+    today.setDate(today.getDate() + 1);
+    dateInput.min = today.toISOString().split('T')[0];
+  }
+
+  // Form submission
+  function submitForm() {
+    const fname = document.getElementById('fname').value.trim();
+    const lname = document.getElementById('lname').value.trim();
+    const email = document.getElementById('email').value.trim();
+    const phone = document.getElementById('phone').value.trim();
+    const date = document.getElementById('tourDate').value;
+    const time = document.getElementById('tourTime').value;
+
+    if (!fname || !lname || !email || !phone || !date || !time) {
+      // Highlight empty required fields
+      [['fname', fname], ['lname', lname], ['email', email], ['phone', phone], ['tourDate', date], ['tourTime', time]].forEach(([id, val]) => {
+        const el = document.getElementById(id);
+        if (!val) {
+          el.style.borderColor = '#C0392B';
+          el.addEventListener('input', () => el.style.borderColor = '', { once: true });
+        }
+      });
+      return;
+    }
+
+    document.getElementById('formContent').style.display = 'none';
+    document.getElementById('formSuccess').style.display = 'block';
+  }
+</script>
 </body>
 </html>
