@@ -8,51 +8,73 @@
 <style>
 body {
   margin:0;
-  font-family: Arial, sans-serif;
+  font-family: 'Segoe UI', sans-serif;
   color:#333;
+  line-height:1.6;
 }
 
 /* HERO */
 .hero {
-  height:100vh;
-  background: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)),
-  url('https://images.unsplash.com/photo-1505691723518-36a5ac3be353');
+  height:90vh;
+  background: linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.4)),
+  url('https://images.unsplash.com/photo-1568605114967-8130f3a36994');
   background-size:cover;
   background-position:center;
   display:flex;
-  flex-direction:column;
   justify-content:center;
   align-items:center;
   text-align:center;
   color:white;
+  padding:20px;
 }
 
 .hero h1 {
-  font-size:44px;
-  margin-bottom:10px;
+  font-size:42px;
 }
 
 .hero p {
-  font-size:20px;
+  font-size:18px;
   max-width:600px;
+  margin:15px auto;
 }
 
 .btn {
-  background:#6b8e23;
-  padding:14px 28px;
+  background:#7a9c59;
+  padding:12px 25px;
   color:white;
   text-decoration:none;
   border-radius:6px;
-  margin-top:20px;
-  font-weight:bold;
+  display:inline-block;
+  margin-top:15px;
 }
 
-/* SECTIONS */
+/* SECTION */
 .section {
   padding:60px 20px;
+  max-width:1000px;
+  margin:auto;
   text-align:center;
 }
 
+.split {
+  display:flex;
+  flex-wrap:wrap;
+  align-items:center;
+  gap:30px;
+  text-align:left;
+}
+
+.split img {
+  width:100%;
+  max-width:450px;
+  border-radius:10px;
+}
+
+.split div {
+  flex:1;
+}
+
+/* CARDS */
 .cards {
   display:flex;
   flex-wrap:wrap;
@@ -60,35 +82,34 @@ body {
 }
 
 .card {
-  background:white;
-  margin:15px;
-  padding:25px;
+  background:#f5f5f5;
+  margin:10px;
+  padding:20px;
   border-radius:10px;
-  width:240px;
-  box-shadow:0 4px 10px rgba(0,0,0,0.1);
+  width:220px;
 }
 
 /* REVIEWS */
 .reviews {
-  background:#f5f5f5;
+  background:#fafafa;
 }
 
 .review {
   max-width:500px;
-  margin:15px auto;
+  margin:10px auto;
   font-style:italic;
 }
 
 /* FAQ */
 .faq {
+  text-align:left;
   max-width:700px;
   margin:auto;
-  text-align:left;
 }
 
 /* FOOTER */
 footer {
-  background:#2f4f4f;
+  background:#4a5d4a;
   color:white;
   text-align:center;
   padding:20px;
@@ -100,16 +121,26 @@ footer {
 
 <!-- HERO -->
 <div class="hero">
-  <h1>Harbor Sanctuary Adult Family Home</h1>
-  <p>Proudly family owned in Gig Harbor, offering compassionate care in a peaceful, nature-filled setting.</p>
-  <a class="btn" href="mailto:your@email.com">Schedule a Tour</a>
+  <div>
+    <h1>Harbor Sanctuary Adult Family Home</h1>
+    <p>Proudly family owned in Gig Harbor, offering a warm and heart-centered home in a quiet, safe, and nature-filled neighborhood.</p>
+    <a class="btn" href="mailto:your@email.com">Schedule a Tour</a>
+  </div>
 </div>
 
 <!-- ABOUT -->
 <div class="section">
-  <h2>About Our Home</h2>
-  <p>Harbor Sanctuary Adult Family Home is a proudly family-owned residence established in Gig Harbor. We provide a warm, heartwarming atmosphere where residents feel safe, valued, and truly at home.</p>
-  <p>Located in a quiet and safe neighborhood surrounded by beautiful nature, our home offers comfort, peace, and personalized care for every resident.</p>
+  <h2>Welcome to Our Home</h2>
+  <p>At Harbor Sanctuary, we believe care should feel like family. Established in Gig Harbor, our adult family home provides a peaceful and nurturing environment where every resident is treated with dignity, compassion, and respect.</p>
+</div>
+
+<!-- IMAGE + TEXT -->
+<div class="section split">
+  <img src="https://images.unsplash.com/photo-1505691938895-1758d7feb511">
+  <div>
+    <h2>A Peaceful Setting</h2>
+    <p>Located in a quiet and safe neighborhood, our home is surrounded by natural beauty. Residents enjoy a calm atmosphere, fresh air, and a truly relaxing environment.</p>
+  </div>
 </div>
 
 <!-- SERVICES -->
@@ -117,27 +148,26 @@ footer {
   <h2>Our Care Services</h2>
   <div class="cards">
     <div class="card">24/7 Personalized Care</div>
-    <div class="card">Medication Assistance</div>
-    <div class="card">Home-Cooked Meals</div>
-    <div class="card">Daily Activities</div>
+    <div class="card">Medication Management</div>
+    <div class="card">Nutritious Home-Cooked Meals</div>
+    <div class="card">Daily Engagement Activities</div>
   </div>
 </div>
 
 <!-- REVIEWS -->
 <div class="section reviews">
-  <h2>What Families Say</h2>
-  <div class="review">⭐️⭐️⭐️⭐️⭐️ “The staff truly cares like family. We couldn’t ask for a better place.”</div>
-  <div class="review">⭐️⭐️⭐️⭐️⭐️ “Peaceful, clean, and full of love.”</div>
-  <div class="review">⭐️⭐️⭐️⭐️⭐️ “A beautiful home in a quiet neighborhood. Highly recommend.”</div>
+  <h2>What Families Are Saying</h2>
+  <div class="review">⭐️⭐️⭐️⭐️⭐️ “A truly loving and peaceful home.”</div>
+  <div class="review">⭐️⭐️⭐️⭐️⭐️ “You can feel the care the moment you walk in.”</div>
 </div>
 
 <!-- FAQ -->
 <div class="section">
   <h2>Frequently Asked Questions</h2>
   <div class="faq">
-    <p><strong>What is an adult family home?</strong><br>A small residential home that provides personalized care in a family-style environment.</p>
-    <p><strong>How many residents do you have?</strong><br>We maintain a small number of residents to ensure individualized attention.</p>
-    <p><strong>Can we schedule a visit?</strong><br>Yes, we encourage families to visit and experience our home firsthand.</p>
+    <p><strong>What makes your home different?</strong><br>We are family-owned and focus on creating a warm, personal environment.</p>
+    <p><strong>Can we visit?</strong><br>Yes, we encourage tours for families to experience our home.</p>
+    <p><strong>What level of care do you provide?</strong><br>We offer personalized care tailored to each resident’s needs.</p>
   </div>
 </div>
 
